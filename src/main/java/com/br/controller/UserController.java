@@ -55,7 +55,7 @@ public class UserController extends HttpServlet {
          
         try {
             User user = userDao.checkLogin(email, password);
-            String destPage = "index.jsp";
+            String destPage = "login.jsp";
              
             if (user != null) {
                 session.setAttribute("user", user);
@@ -79,7 +79,7 @@ public class UserController extends HttpServlet {
 	protected void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("index.html");
 	}
 	
 	protected void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

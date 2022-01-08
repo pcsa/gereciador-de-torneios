@@ -51,8 +51,8 @@ public class UserDAO {
 		String sql = "select * from users where email = ?";
 		
 		try {
+			User user = null;
 			
-			User user = new User();
 			PreparedStatement stmt = this.connection.prepareStatement(sql);
 			
 			stmt.setString(1, email);
@@ -60,6 +60,7 @@ public class UserDAO {
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()) {
+				user = new User();
 				user.setId(rs.getInt("id"));
 				user.setName(rs.getString("name"));
 				user.setEmail(rs.getString("email"));

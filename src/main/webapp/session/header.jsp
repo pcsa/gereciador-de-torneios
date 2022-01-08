@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%
   if (session.getAttribute("user") == null){
-    String destPage = "/index.jsp";
+    String destPage = "/index.html";
     response.sendRedirect(request.getContextPath()+destPage);
   }
 %>

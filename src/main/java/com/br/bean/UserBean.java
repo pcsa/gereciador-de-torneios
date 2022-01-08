@@ -17,19 +17,7 @@ public class UserBean {
 	
 	public void createUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
-		if(!userAvailable(request.getParameter("email"))) {
-			System.out.println("Já existe!");
-			String message = "Este email já está em uso.";
-			String formName = request.getAttribute("name").toString();
-			String formEmail = request.getAttribute("email").toString();
-		    request.setAttribute("message", message);
-		    request.setAttribute("formName", formName);
-		    request.setAttribute("formEmail", formEmail);
-		    RequestDispatcher rd = 
-					request.getRequestDispatcher("register.jsp");
-			
-			rd.forward(request, response);
-		} else {
+		if(userAvailable(request.getParameter("email"))) {
 			user = new User();
 			
 			user.setName(request.getParameter("name"));
@@ -40,18 +28,27 @@ public class UserBean {
 			userDAO.insert(user);
 
 			userDAO.close();
-
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("login.jsp");
+		} else {
+			String message = "Este email já está em uso.";
+			String formName = request.getParameter("name").toString();
+			String formEmail = request.getParameter("email").toString();
+		    request.setAttribute("message", message);
+		    request.setAttribute("formName", formName);
+		    request.setAttribute("formEmail", formEmail);
+		    RequestDispatcher rd = 
+					request.getRequestDispatcher("register.jsp");
+			
+			rd.forward(request, response);
 		}
 	}
 
 	public boolean userAvailable(String email) {
 		
-		user = new User();
 		userDAO = new UserDAO();
 		
 		user = userDAO.getUserByEmail(email);
-		System.out.println(user.getName());
+		
 		if(user == null) {
 			return true;
 		} else {

@@ -1,4 +1,4 @@
-package model;
+package com.br.model;
 
 public class TimeMataMata extends Time{
     private int golsfora;

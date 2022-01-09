@@ -9,7 +9,7 @@ public class ConnectionFactory {
 	private String driver1 = "com.mysql.cj.jdbc.Driver";
 	private String url1 = "jdbc:mysql://localhost:3306/torneios";
 	private String user1 = "root";
-	private String password1 = "password";
+	private String password1 = "admin";
 	
 	/* Postgresql Connection */
 	private String driver2 = "org.postgresql.Driver";

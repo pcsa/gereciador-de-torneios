@@ -56,10 +56,12 @@ public class UserController extends HttpServlet {
         try {
             User user = userDao.checkLogin(email, password);
             String destPage = "login.jsp";
+//            String destPage = "session/user.jsp";
              
             if (user != null) {
                 session.setAttribute("user", user);
-                destPage = "session/home.jsp";
+//                destPage = "session/home.jsp";
+                destPage = "session/user.jsp";
                 System.out.println("Login sucess");
             } else {
                 String message = "Email ou password invalidos";

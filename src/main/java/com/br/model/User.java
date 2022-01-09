@@ -4,7 +4,7 @@ public class User {
 	private int id;
 	private String name;
 	private String email;
-	private String password;
+	private String psw;
 	
 	
 	
@@ -12,12 +12,12 @@ public class User {
 		super();
 	}
 
-	public User(int id, String name, String email, String password) {
+	public User(int id, String name, String email, String psw) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
-		this.password = password;
+		this.psw = psw;
 	}
 	
 	public int getId() {
@@ -38,11 +38,11 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPassword() {
-		return password;
+	public String getPsw() {
+		return psw;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPsw(String psw) {
+		this.psw = psw;
 	}
 	
 	

@@ -29,7 +29,7 @@ public class UserDAO {
 	public void insert(User user) {
 		
 		String sql = "insert into users" +
-					"(name,email,password)" +
+					"(name,email,psw)" +
 					"values(?,?,?)";
 		
 		try {
@@ -37,7 +37,7 @@ public class UserDAO {
 			
 			stmt.setString(1, user.getName());
 			stmt.setString(2, user.getEmail());
-			stmt.setString(3, user.getPassword());
+			stmt.setString(3, user.getPsw());
 			stmt.execute();
 			stmt.close();
 			
@@ -76,11 +76,11 @@ public class UserDAO {
 		}
 	}
 	
-	public User checkLogin(String email, String password) throws SQLException {
-		String sql = "SELECT * FROM users WHERE email = ? and password = ?";
+	public User checkLogin(String email, String psw) throws SQLException {
+		String sql = "SELECT * FROM users WHERE email = ? and psw = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, email);
-        statement.setString(2, password);
+        statement.setString(2, psw);
  
         ResultSet result = statement.executeQuery();
  

@@ -22,7 +22,7 @@ public class UserBean {
 			
 			user.setName(request.getParameter("name"));
 			user.setEmail(request.getParameter("email"));
-			user.setPassword(request.getParameter("password"));
+			user.setPsw(request.getParameter("password"));
 
 			userDAO = new UserDAO();
 			userDAO.insert(user);

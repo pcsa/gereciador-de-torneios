@@ -22,7 +22,6 @@ public class TorneioDAO {
 		try {
 			this.conn.close();
 		} catch (SQLException e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}
@@ -51,7 +50,6 @@ public class TorneioDAO {
 			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -85,7 +83,6 @@ public class TorneioDAO {
 			return Torneios;
 			
 		} catch (Exception e) {
-			// TODO: handle exception
 			System.out.println(e);
 			return null;
 		}
@@ -140,7 +137,6 @@ public class TorneioDAO {
 			stmt.close();
 			
 		} catch (Exception e) {
-			// TODO: handle exception
 			System.out.println(e);
 		}
 		
@@ -159,7 +155,6 @@ public class TorneioDAO {
 			stmt.execute();
 			stmt.close();
 		} catch (Exception e) {
-			// TODO: handle exception
 			System.out.println(e);
 		}
 		

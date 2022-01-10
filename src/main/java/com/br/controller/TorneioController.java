@@ -10,18 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.util.http.fileupload.RequestContext;
-
-import com.br.dao.TorneioDAO;
 import com.br.model.Torneio;
 import com.br.model.User;
-import com.br.utils.ConnectionFactory;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
-
 import com.br.bean.TorneioBean;
 import com.br.business.Cartela;
 

@@ -28,7 +28,6 @@ public class ConnectionFactory {
 			conn = DriverManager.getConnection(url1,user1,password1);
 			return conn;
 		} catch (Exception e) {
-			// TODO: handle exception
 			System.out.println(e);
 		}
 		
@@ -38,7 +37,6 @@ public class ConnectionFactory {
 			conn = DriverManager.getConnection(url2,user2,password2);
 			return conn;
 		} catch (Exception e) {
-			// TODO: handle exception
 			System.out.println(e);
 			return null;
 		}

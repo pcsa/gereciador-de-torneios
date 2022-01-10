@@ -1,7 +1,5 @@
 package com.br.business;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletResponse;
 
 import com.br.dao.TorneioDAO;
@@ -80,7 +78,6 @@ public class Cartela {
 			Cartela.close();
 
 		} catch (Exception e) {
-			// TODO: handle exception
 			System.out.println(e);
 			Cartela.close();
 		}

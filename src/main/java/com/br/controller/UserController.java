@@ -27,7 +27,6 @@ public class UserController extends HttpServlet {
      */
     public UserController() {
         super();
-        // TODO Auto-generated constructor stub
     }
     
 	/**
@@ -56,11 +55,9 @@ public class UserController extends HttpServlet {
         try {
             User user = userDao.checkLogin(email, password);
             String destPage = "login.jsp";
-//            String destPage = "session/user.jsp";
              
             if (user != null) {
                 session.setAttribute("user", user);
-//                destPage = "session/home.jsp";
                 destPage = "session/user.jsp";
                 System.out.println("Login sucess");
             } else {

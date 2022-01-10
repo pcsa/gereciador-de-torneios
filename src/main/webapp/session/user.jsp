@@ -17,7 +17,6 @@
 	ArrayList<Torneio> torneios = new ArrayList<Torneio>();
 	TorneioDAO daoTorneios = new TorneioDAO();
 	try {
-// 		torneios = (ArrayList<Torneio>) request.getAttribute("torneios");
 		User user = (User) session.getAttribute("user");
 		torneios = daoTorneios.getTorneios(user.getId());
 		
@@ -31,7 +30,7 @@
 
 	<% if(torneios != null) { for(Torneio torneio : torneios) { %>
 		<p>
-			<span><p><%=torneio.getTitle()%></p></span>
+			<span><%=torneio.getTitle()%></span>
 			<a href="cartela?id=<%=torneio.getId() %>"><button>Gerar Cartela</button></a>
 			<a href="selecionaTorneio?id=<%=torneio.getId() %>"><button>Editar</button></a>
 			<a href="deletar?id=<%=torneio.getId() %>"><button>Deletar</button></a>

@@ -27,13 +27,13 @@ public class TorneioDAO {
 		}
 	}
 	
-	public void adiciona(Torneio Torneio) {
+	public void adiciona(Torneio torneio, int uid) {
 		
 		//1. string de inserção
 		
 		String sql = "insert into torneios" +
-					"(title,times)" +
-					"values(?,?)";
+					"(owner,title,times)" +
+					"values(?,?,?)";
 		
 		try {
 			//2. preparar a senteça
@@ -41,8 +41,9 @@ public class TorneioDAO {
 			
 			//3. passar dados que estão no objeto TorneioBean
 			
-			stmt.setString(1, Torneio.getTitle());
-			stmt.setString(2, Torneio.getTimes().toString());
+			stmt.setInt(1, uid);
+			stmt.setString(2, torneio.getTitle());
+			stmt.setString(3, torneio.getTimes().toString());
 			
 			//4. executar a setença
 			stmt.execute();
@@ -55,9 +56,9 @@ public class TorneioDAO {
 		}
 	}
 	
-	public ArrayList<Torneio> getTorneios(){
+	public ArrayList<Torneio> getTorneios(int uid){
 		
-		String sql = "select * from torneios";
+		String sql = "select * from torneios where owner = " + Integer.toString(uid);
 		
 		try {
 			
@@ -66,7 +67,7 @@ public class TorneioDAO {
 			
 			PreparedStatement stmt = this.conn.prepareStatement(sql);
 			
-			ResultSet rs = stmt.executeQuery(sql);
+			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()) {
 				
@@ -165,9 +166,9 @@ public class TorneioDAO {
 		
 	}
 	
-	public Torneio getTorneioPeloTitle(String title) {
+	public Torneio getTorneioPeloTitle(String title, int uid) {
 		
-		String sql = "select * from Torneios where title = ?";
+		String sql = "select * from Torneios where title = ? and owner = " + Integer.toString(uid);
 		Torneio Torneio = null;
 		
 		try {
@@ -189,7 +190,6 @@ public class TorneioDAO {
 			
 			return Torneio;
 		} catch (Exception e) {
-			// TODO: handle exception
 			System.out.println(e);
 			return null;
 		}

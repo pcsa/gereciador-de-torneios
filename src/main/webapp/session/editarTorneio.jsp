@@ -8,7 +8,7 @@
 <title>Editar Torneio</title>
 </head>
 <body>
-
+<%@ include file="header.jsp" %>
 <%
 Torneio torneio = 
 (Torneio) request.getAttribute("Torneio");

@@ -14,6 +14,7 @@ import org.apache.tomcat.util.http.fileupload.RequestContext;
 
 import com.br.dao.TorneioDAO;
 import com.br.model.Torneio;
+import com.br.model.User;
 import com.br.utils.ConnectionFactory;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
@@ -28,7 +29,7 @@ import com.br.business.Cartela;
  * Servlet implementation class TorneioController
  */
 @WebServlet(urlPatterns = { "/TorneioController", "/home", 
-		"/novoTorneio", "/selecionaTorneio", 
+		"/novoTorneio", "/criarTorneio", "/selecionaTorneio", 
 		"/editaTorneio", "/deletar", "/cartela" })
 public class TorneioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -56,6 +57,9 @@ public class TorneioController extends HttpServlet {
 			Torneios(request, response);
 		} else if (acao.equals("/novoTorneio")) {
 			novoTorneio(request, response);
+		} else if(acao.equals("/criarTorneio")) {
+			RequestDispatcher rd = request.getRequestDispatcher("session/novoTorneio.jsp");
+			rd.forward(request, response);
 		} else if (acao.equals("/selecionaTorneio")) {
 			selecionaTorneio(request, response);
 		} else if (acao.equals("/editaTorneio")) {
@@ -84,9 +88,9 @@ public class TorneioController extends HttpServlet {
 		
 		TorneioDAO.fechar();
 		*/
-		
+		User user = (User) request.getSession().getAttribute("user");
 		TorneioBean TorneioBean = new TorneioBean();
-		ArrayList<Torneio> Torneios = TorneioBean.getTorneios();
+		ArrayList<Torneio> Torneios = TorneioBean.getTorneios(user.getId());
 		
 		//encaminhar para JSP
 		
@@ -153,7 +157,7 @@ public class TorneioController extends HttpServlet {
 		
 		request.setAttribute("Torneio", Torneio);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("editarTorneio.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("session/editarTorneio.jsp");
 		
 		rd.forward(request, response);
 		

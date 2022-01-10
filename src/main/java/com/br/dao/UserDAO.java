@@ -90,6 +90,7 @@ public class UserDAO {
             user = new User();
             user.setName(result.getString("name"));
             user.setEmail(email);
+            user.setId(result.getInt("id"));
         }
         this.close();
         return user;

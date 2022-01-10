@@ -5,9 +5,11 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.br.dao.TorneioDAO;
 import com.br.model.Torneio;
+import com.br.model.User;
 
 public class TorneioBean {
 
@@ -63,9 +65,12 @@ public class TorneioBean {
 	}
 
 	public void novoTorneio(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
 		
-		if(existeTorneio(request.getParameter("title"))) {
-			System.out.println("Torneio já existe!");
+		User user = (User) session.getAttribute("user");
+		
+		if(existeTorneio(request.getParameter("title"), user.getId())) {
+			System.out.println("Torneio jï¿½ existe!");
 			response.sendRedirect("home");
 		} else {
 			Torneio = new Torneio();
@@ -75,8 +80,9 @@ public class TorneioBean {
 			Torneio.setTimes(request.getParameter("times"));
 
 			TorneioDAO = new TorneioDAO();
-			TorneioDAO.adiciona(Torneio);
+			TorneioDAO.adiciona(Torneio, user.getId());
 
+			System.out.println(user.getId());
 			// System.out.println("Torneio foi gravado!");
 
 			TorneioDAO.fechar();
@@ -87,11 +93,11 @@ public class TorneioBean {
 		
 	}
 
-	public ArrayList<Torneio> getTorneios() {
+	public ArrayList<Torneio> getTorneios(int uid) {
 
 		TorneioDAO = new TorneioDAO();
 
-		this.Torneios = TorneioDAO.getTorneios();
+		this.Torneios = TorneioDAO.getTorneios(uid);
 
 		TorneioDAO.fechar();
 		
@@ -99,12 +105,12 @@ public class TorneioBean {
 
 	}
 	
-	public boolean existeTorneio(String title) {
+	public boolean existeTorneio(String title,  int uid) {
 		
 		Torneio = new Torneio();
 		TorneioDAO = new TorneioDAO();
 		
-		Torneio = TorneioDAO.getTorneioPeloTitle(title);
+		Torneio = TorneioDAO.getTorneioPeloTitle(title, uid);
 		
 		if(Torneio != null) {
 			return true;

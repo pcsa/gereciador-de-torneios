@@ -1,14 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="com.br.model.Torneio"%>
+<%@page import="com.br.model.User"%>
 <%@page import="com.br.dao.TorneioDAO"%>
 <%@page import="java.util.ArrayList"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Página do usuário</title>
+<meta charset="UTF-8">
+<title>PÃ¡gina do usuÃ¡rio</title>
 </head>
 <body>
 <%@ include file="header.jsp" %>
@@ -17,10 +18,10 @@
 	TorneioDAO daoTorneios = new TorneioDAO();
 	try {
 // 		torneios = (ArrayList<Torneio>) request.getAttribute("torneios");
-		torneios = daoTorneios.getTorneios();
+		User user = (User) session.getAttribute("user");
+		torneios = daoTorneios.getTorneios(user.getId());
 		
 	} catch (Exception e) {
-		// TODO: handle exception
 		System.out.println(e);
 	}
  
@@ -39,7 +40,7 @@
 		%> <p>Nenhum torneio criado</p> <% }%>
 
 <h3>Criar novo torneio</h3>
-<a href="novoTorneio.jsp"><button>Novo torneio</button></a>
+<a href="criarTorneio"><button>Novo torneio</button></a>
 
 </body>
 </html>

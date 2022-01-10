@@ -15,10 +15,10 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class Cartela {
 
 	public void geraCartela(HttpServletResponse response) {
+		
 		Document Cartela = new Document();
 
 		try {
-
 			// definir o tipo de conteudo da resposta
 
 			response.setContentType("application/pdf");
@@ -60,7 +60,7 @@ public class Cartela {
 			TorneioDAO TorneioDAO = new TorneioDAO();
 
 			try {
-				Torneios = TorneioDAO.getTorneios();
+				Torneios = TorneioDAO.getTorneios(1);
 				TorneioDAO.fechar();
 			} catch (Exception e) {
 				// TODO: handle exception

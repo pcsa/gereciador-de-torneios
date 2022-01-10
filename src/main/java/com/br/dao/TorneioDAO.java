@@ -42,7 +42,7 @@ public class TorneioDAO {
 			
 			stmt.setInt(1, uid);
 			stmt.setString(2, torneio.getTitle());
-			stmt.setString(3, torneio.getTimes().toString());
+			stmt.setString(3, torneio.getTimesSingle());
 			
 			//4. executar a setença
 			stmt.execute();
@@ -129,7 +129,7 @@ public class TorneioDAO {
 			PreparedStatement stmt = this.conn.prepareStatement(sql);
 			
 			stmt.setString(1, Torneio.getTitle());
-			stmt.setString(2, Torneio.getTimes().toString());
+			stmt.setString(2, Torneio.getTimesSingle());
 			
 			stmt.setInt(3, Torneio.getId());
 			

@@ -19,11 +19,11 @@ Torneio torneio =
 <form name="formEditTorneio" action="editaTorneio">
 	<input type="hidden" name="id" value="<%=torneio.getId() %>">
 	<input placeholder="Title" type="text" name="title" value="<%=torneio.getTitle() %>" required><br />
-	<input placeholder="Times" type="text" name="times" value="<%=torneio.getTimes() %>" required><br />
+	<input placeholder="Times" type="text" name="times" value="<%=torneio.getTimesSingle() %>" required><br />
 	
 	<input type="submit" value="Editar Torneio">
 	
 </form>
-
+<a href="home"><button> Voltar </button></a>
 </body>
 </html>

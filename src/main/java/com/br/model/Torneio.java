@@ -14,11 +14,20 @@ public class Torneio {
 	}
 	
 	public ArrayList<String> getTimes() {
-        return times;
+		ArrayList<String> times_ = new ArrayList<String>();
+		for(String time : times) {
+			times_.add(time);
+		}
+        return times_;
     }
 	
-	public void setTimes(ArrayList<String> times) {
-		this.times = times;
+	public String getTimesSingle(){
+		String times_ = "";
+		for(String time : times) {
+			times_ += time+" ";
+		}
+		times_.charAt(times_.length()-1);
+        return times_;
 	}
 	
 	public void setTimes(String times) {

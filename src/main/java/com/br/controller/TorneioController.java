@@ -39,7 +39,6 @@ public class TorneioController extends HttpServlet {
 			throws ServletException, IOException {
 
 		String acao = request.getServletPath();
-		System.out.println(acao);
 
 		if (acao.equals("/home")) {
 			Torneios(request, response);
@@ -75,7 +74,7 @@ public class TorneioController extends HttpServlet {
 		
 		//despachante vai levar os dados para uma jsp de maneira dinamica
 		
-		RequestDispatcher rd = request.getRequestDispatcher("session/user.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("session/home.jsp");
 		
 		rd.forward(request, response);
 			
@@ -136,7 +135,7 @@ public class TorneioController extends HttpServlet {
 		if(user == null) {
 			response.sendRedirect("index.html");
 		} else if(!bean.checkUserByIdTorneio(user.getId(),id) ) {
-			RequestDispatcher rd = request.getRequestDispatcher("session/user.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("session/home.jsp");
 			rd.forward(request, response);
 		} else {
 			Cartela Cartela = new Cartela();

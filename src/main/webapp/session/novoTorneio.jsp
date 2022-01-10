@@ -18,6 +18,6 @@
 	<input type="submit" value="Salvar">
 	
 </form>
-
+<a href="home"><button> Voltar </button></a>
 </body>
 </html>

@@ -15,5 +15,6 @@
 		<input type="submit" value="Salvar" />
 	</form>
 <a href="delete"><button> Excluir conta </button></a>
+<a href="home"><button> Voltar </button></a>
 </body>
 </html>

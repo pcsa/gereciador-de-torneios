@@ -31,7 +31,6 @@ public class UserController extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String action = request.getServletPath();
-		System.out.println(action);
     	if(action.equals("/editarConta")) {
 			RequestDispatcher rd = request.getRequestDispatcher("session/editarConta.jsp");
 			rd.forward(request, response);
@@ -45,7 +44,6 @@ public class UserController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getServletPath();
-		System.out.println(action);
 		
 		if(action.equals("/login")) {
 			login(request, response);
@@ -68,15 +66,13 @@ public class UserController extends HttpServlet {
         try {
             User user = userDao.checkLogin(email, password);
             String destPage = "login.jsp";
-             
+            
             if (user != null) {
                 session.setAttribute("user", user);
-                destPage = "session/user.jsp";
-                System.out.println("Login sucess");
+                destPage = "session/home.jsp";
             } else {
                 String message = "Email ou password invalidos";
                 request.setAttribute("message", message);
-                System.out.println("Login fail");
             }
              
             RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);

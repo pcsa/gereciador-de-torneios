@@ -14,5 +14,6 @@
 	</form>
 	${message} </br>
 	<a href="register.jsp"><button>Cadastrar</button></a>
+	<a href="index.html"><button>Voltar</button></a>
 </body>
 </html>

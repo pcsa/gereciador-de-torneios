@@ -14,18 +14,25 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class Cartela {
 
-	public void geraCartela(HttpServletResponse response) {
+	public void geraCartela(HttpServletResponse response, int id) {
 		
 		Document Cartela = new Document();
 
 		try {
+			
+			Torneio torneio;
+
+			TorneioDAO TorneioDAO = new TorneioDAO();
+			torneio = TorneioDAO.getTorneio(id);
+			TorneioDAO.fechar();
+			
 			// definir o tipo de conteudo da resposta
 
 			response.setContentType("application/pdf");
 
 			// nome do Cartela
 
-			response.addHeader("Content-Disposition", "inline; filename=" + "Torneios.pdf");
+			response.addHeader("Content-Disposition", "inline; filename=" + "Torneio-"+torneio.getTitle()+".pdf");
 
 			// criando o Cartela
 
@@ -34,49 +41,38 @@ public class Cartela {
 			// Abrir o documento
 
 			Cartela.open();
+			
+			Paragraph titulo = new Paragraph("Torneio "+torneio.getTitle());
+			titulo.setAlignment(1);
 
-			Cartela.add(new Paragraph("Lista de Torneios"));
+			Cartela.add(titulo);
 			Cartela.add(new Paragraph(" "));
 
 			// PdfPTable(numero de colunas)
-			PdfPTable tabela = new PdfPTable(3);
+			PdfPTable tabela = new PdfPTable(4);
 
 			// cabecalho
 
-			PdfPCell col1 = new PdfPCell(new Paragraph("Nome"));
-			PdfPCell col2 = new PdfPCell(new Paragraph("Telefone"));
-			PdfPCell col3 = new PdfPCell(new Paragraph("Email"));
+			PdfPCell col1 = new PdfPCell(new Paragraph("Time"));
+			PdfPCell col2 = new PdfPCell(new Paragraph("V"));
+			PdfPCell col3 = new PdfPCell(new Paragraph("D"));
+			PdfPCell col4 = new PdfPCell(new Paragraph("E"));
 
 			// adicionando celulas a tabela
 
 			tabela.addCell(col1);
 			tabela.addCell(col2);
 			tabela.addCell(col3);
+			tabela.addCell(col4);
 
 			// popular tabela com dados de Torneio
 
-			ArrayList<Torneio> Torneios = new ArrayList<Torneio>();
-
-			TorneioDAO TorneioDAO = new TorneioDAO();
-
-			try {
-				Torneios = TorneioDAO.getTorneios(1);
-				TorneioDAO.fechar();
-			} catch (Exception e) {
-				// TODO: handle exception
-				System.out.println(e);
-			}
 			
-			for (Torneio Torneio : Torneios) {
-				System.out.println(Torneio.getTitle());
-				System.out.println(Torneio.getTimes());
-				tabela.addCell(
-					new PdfPCell(new Paragraph(Torneio.getTitle())));
-//				tabela.addCell(new Paragraph(Torneio.getTimes().toString()));
-//				tabela.addCell(new Paragraph("hi"));       
-//				tabela.addCell(new Paragraph("hi"));
-//				tabela.addCell(new Paragraph("hi"));
-				tabela.addCell(Torneio.getTitle());
+			for (String time : torneio.getTimes()) {
+				tabela.addCell(new PdfPCell(new Paragraph(time)));
+				tabela.addCell(new PdfPCell(new Paragraph("")));
+				tabela.addCell(new PdfPCell(new Paragraph("")));
+				tabela.addCell(new PdfPCell(new Paragraph("")));
 			}
 
 			Cartela.add(tabela);

@@ -32,7 +32,7 @@
 	<% if(torneios != null) { for(Torneio torneio : torneios) { %>
 		<p>
 			<span><p><%=torneio.getTitle()%></p></span>
-			<a href="cartela"><button>Gerar Cartela</button></a>
+			<a href="cartela?id=<%=torneio.getId() %>"><button>Gerar Cartela</button></a>
 			<a href="selecionaTorneio?id=<%=torneio.getId() %>"><button>Editar</button></a>
 			<a href="deletar?id=<%=torneio.getId() %>"><button>Deletar</button></a>
 		</p>

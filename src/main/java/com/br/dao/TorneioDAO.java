@@ -118,7 +118,6 @@ public class TorneioDAO {
 			return Torneio;
 			
 		} catch (Exception e) {
-			// TODO: handle exception
 			System.out.println(e);
 			return null;
 		}
@@ -194,6 +193,30 @@ public class TorneioDAO {
 			return null;
 		}
 		
+	}
+
+	public boolean checkUserPerm(int uid, int tid) {
+		
+		String sql = "select * from Torneios where id = "+Integer.toString(tid)
+		+" and owner = " + Integer.toString(uid);
+		boolean response = false;
+		try {
+			
+			PreparedStatement stmt = this.conn.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				response = true;
+			}
+			
+			rs.close();
+			stmt.close();
+			
+			return response;
+		} catch (Exception e) {
+			System.out.println(e);
+			return response;
+		}
 	}
 	
 	

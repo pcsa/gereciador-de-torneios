@@ -70,7 +70,7 @@ public class TorneioBean {
 		User user = (User) session.getAttribute("user");
 		
 		if(existeTorneio(request.getParameter("title"), user.getId())) {
-			System.out.println("Torneio jï¿½ existe!");
+			System.out.println("Torneio já existe!");
 			response.sendRedirect("home");
 		} else {
 			Torneio = new Torneio();
@@ -118,5 +118,9 @@ public class TorneioBean {
 			return false;
 		}
 	}
-
+	
+	public boolean checkUserByIdTorneio(int uid, int tid) {
+		TorneioDAO = new TorneioDAO();
+		return TorneioDAO.checkUserPerm(uid,tid);
+	}
 }

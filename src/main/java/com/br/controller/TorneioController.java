@@ -39,7 +39,6 @@ public class TorneioController extends HttpServlet {
 	 */
 	public TorneioController() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -48,7 +47,6 @@ public class TorneioController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
 		String acao = request.getServletPath();
 		System.out.println(acao);
@@ -72,22 +70,11 @@ public class TorneioController extends HttpServlet {
 			response.sendRedirect("index.html");
 		}
 
-		// ConnectionFactory cf = new ConnectionFactory();
-		// cf.testeConnection();
 	}
 
 	protected void Torneios(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		//response.sendRedirect("Torneio.jsp");
-		/*
-		TorneioDAO TorneioDAO = new TorneioDAO();
 		
-		ArrayList<Torneio> Torneios = 
-				TorneioDAO.getTorneios();
-		
-		TorneioDAO.fechar();
-		*/
 		User user = (User) request.getSession().getAttribute("user");
 		TorneioBean TorneioBean = new TorneioBean();
 		ArrayList<Torneio> Torneios = TorneioBean.getTorneios(user.getId());
@@ -98,9 +85,7 @@ public class TorneioController extends HttpServlet {
 		
 		//despachante vai levar os dados para uma jsp de maneira dinamica
 		
-		RequestDispatcher rd = 
-//				request.getRequestDispatcher("Torneio.jsp");
-				request.getRequestDispatcher("session/user.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("session/user.jsp");
 		
 		rd.forward(request, response);
 			
@@ -109,24 +94,6 @@ public class TorneioController extends HttpServlet {
 
 	protected void novoTorneio(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		/*
-		Torneio Torneio = new Torneio();
-		
-		//1. recuperando parametros do formulario
-		Torneio.setNome(request.getParameter("nome"));
-		Torneio.setTelefone(request.getParameter("telefone"));
-		Torneio.setEmail(request.getParameter("email"));
-		
-		TorneioDAO TorneioDAO = new TorneioDAO();
-		
-		TorneioDAO.adiciona(Torneio);
-		
-		System.out.println("Torneio foi gravado!");
-		
-		TorneioDAO.fechar();
-		response.sendRedirect("home");
-		*/
 		
 		TorneioBean TorneioBean = new TorneioBean();
 		TorneioBean.novoTorneio(request, response);
@@ -137,16 +104,6 @@ public class TorneioController extends HttpServlet {
 			throws ServletException, IOException {
 		
 		int id = Integer.parseInt(request.getParameter("id"));
-		
-		/*
-		Torneio Torneio = new Torneio();
-		
-		TorneioDAO TorneioDAO = new TorneioDAO();
-		
-		Torneio = TorneioDAO.getTorneio(id);
-		
-		TorneioDAO.fechar();
-		*/
 		
 		TorneioBean TorneioBean = new TorneioBean();
 		Torneio Torneio = new Torneio();
@@ -165,23 +122,6 @@ public class TorneioController extends HttpServlet {
 	
 	protected void editaTorneio(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		/*
-		Torneio Torneio = new Torneio();
-		
-		int id = Integer.parseInt(request.getParameter("id"));
-		Torneio.setId(id);
-		
-		Torneio.setNome(request.getParameter("nome"));
-		Torneio.setTelefone(request.getParameter("telefone"));
-		Torneio.setEmail(request.getParameter("email"));
-		
-		TorneioDAO TorneioDAO = new TorneioDAO();
-		
-		TorneioDAO.atualiza(Torneio);
-		TorneioDAO.fechar();
-		
-		response.sendRedirect("home");
-		*/
 		
 		TorneioBean TorneioBean = new TorneioBean();
 		TorneioBean.editaTorneio(request, response);
@@ -190,40 +130,28 @@ public class TorneioController extends HttpServlet {
 	
 	protected void deletaTorneio(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		/*
-		Torneio Torneio = new Torneio();
-		
-		int id = Integer.parseInt(request.getParameter("id"));
-		
-		Torneio.setId(id);
-		
-		TorneioDAO TorneioDAO = new TorneioDAO();
-		
-		TorneioDAO.remove(Torneio);
-		
-		TorneioDAO.fechar();
-		
-		response.sendRedirect("home");
-		*/
-		
+				
 		TorneioBean TorneioBean = new TorneioBean();
 		TorneioBean.deletaTorneio(request, response);
-		
-		
-		
+
 	}
 	
-	//gerar relatório
+	//gerar tabela
 	//link <https://github.com/itext/itextpdf/releases/tag/5.5.13.2>
 	protected void geraCartela(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		
-		Cartela Cartela = new Cartela();
-		Cartela.geraCartela(response);
-		
-		
+		User user = (User) request.getSession().getAttribute("user");
+		TorneioBean bean = new TorneioBean();
+		int id = Integer.parseInt(request.getParameter("id"));
+		if(user == null) {
+			response.sendRedirect("index.html");
+		} else if(!bean.checkUserByIdTorneio(user.getId(),id) ) {
+			RequestDispatcher rd = request.getRequestDispatcher("session/user.jsp");
+			rd.forward(request, response);
+		} else {
+			Cartela Cartela = new Cartela();
+			Cartela.geraCartela(response,id);
+		}
 	}
 	
 

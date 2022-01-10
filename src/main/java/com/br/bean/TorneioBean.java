@@ -33,6 +33,18 @@ public class TorneioBean {
 
 		response.sendRedirect("home");
 	}
+	
+	public void deleteTorneioById(int id) {
+		Torneio = new Torneio();
+
+		Torneio.setId(id);
+
+		TorneioDAO = new TorneioDAO();
+
+		TorneioDAO.remove(Torneio);
+
+		TorneioDAO.fechar();
+	}
 
 	public Torneio selecionaTorneio(int id) {
 

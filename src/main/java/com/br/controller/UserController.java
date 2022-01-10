@@ -18,7 +18,7 @@ import com.br.model.User;
 /**
  * Servlet implementation class authController
  */
-@WebServlet(urlPatterns = {"/login", "/logout", "/register"})
+@WebServlet(urlPatterns = {"/login", "/logout", "/register", "/editarConta", "/updateUser", "/delete"})
 public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,6 +27,17 @@ public class UserController extends HttpServlet {
      */
     public UserController() {
         super();
+    }
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	String action = request.getServletPath();
+		System.out.println(action);
+    	if(action.equals("/editarConta")) {
+			RequestDispatcher rd = request.getRequestDispatcher("session/editarConta.jsp");
+			rd.forward(request, response);
+		} else if(action.equals("/delete")) {
+			delete(request, response);
+		}
     }
     
 	/**
@@ -42,7 +53,9 @@ public class UserController extends HttpServlet {
 			logout(request, response);
 		} else if(action.equals("/register")) {
 			register(request, response);
-		}
+		} else if(action.equals("/updateUser")) {
+			update(request, response);
+		} 
 	}
 	
 	protected void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -86,5 +99,15 @@ public class UserController extends HttpServlet {
 		session.invalidate();
 		UserBean userBean = new UserBean();
 		userBean.createUser(request, response);
+	}
+	
+	protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		UserBean userBean = new UserBean();
+		userBean.update(request, response);
+	}
+	
+	protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		UserBean userBean = new UserBean();
+		userBean.delete(request, response);
 	}
 }

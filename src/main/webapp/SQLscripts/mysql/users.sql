@@ -9,7 +9,9 @@ CREATE TABLE `users` (
 
 create table torneios(
 	id int not null auto_increment,
+  owner int not null,
 	title varchar(255),
-    times varchar(255),
-    primary key(id)
+  times varchar(255),
+  primary key(id),
+  FOREIGN KEY (owner) REFERENCES users(id)
 );

@@ -11,7 +11,7 @@
 		Nome: <input type="text" name="name" value="${formName}" placeHolder="Nome" /> <br />
 		Email: <input type="text" name="email" value="${formEmail}" placeHolder="Email" /> ${message} <br />
 		Senha: <input type="password" name="password" placeHolder="Senha"/> <br />
-		Confirmar senha: <input type="password" name="password" placeHolder="Repita a senha"/> <br />
+		Confirmar senha: <input type="password" name="password_confirm" placeHolder="Repita a senha"/> <br />
 		<input type="submit" value="Cadastrar" />
 	</form>
 	<a href="index.html"><button>Voltar</button></a>

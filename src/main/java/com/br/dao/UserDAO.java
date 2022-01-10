@@ -89,10 +89,48 @@ public class UserDAO {
         if (result.next()) {
             user = new User();
             user.setName(result.getString("name"));
-            user.setEmail(email);
+            user.setEmail(result.getString("email"));
             user.setId(result.getInt("id"));
+            user.setPsw(result.getString("psw"));
+            
         }
         this.close();
         return user;
+	}
+
+	public void update(User user) {
+		String sql = "update users set name=?, email=?, psw=? "+
+				"where id=?";
+		
+		try {
+			PreparedStatement stmt = this.connection.prepareStatement(sql);
+			
+			stmt.setString(1, user.getName());
+			stmt.setString(2, user.getEmail());
+			stmt.setString(3, user.getPsw());
+			stmt.setInt(4, user.getId());
+			
+			stmt.execute();
+			stmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+	}
+
+	public void delete(User user) {
+		String sql = "delete from users where id=?";
+		
+		try {
+			PreparedStatement stmt = this.connection.prepareStatement(sql);
+			
+			stmt.setInt(1, user.getId());
+			
+			stmt.execute();
+			stmt.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 }

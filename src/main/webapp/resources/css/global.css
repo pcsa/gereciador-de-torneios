@@ -65,3 +65,15 @@ input[type="submit"]{
 	color: #D8000C;
 	font-weight: 600;
 }
+
+.vertical-center{
+	margin-top: auto;
+	margin-bottom: auto;
+} 
+
+.header {
+	display: flex; 
+	max-width: 500px; 
+	background-color: #e7f5f5;
+	padding: 0px 20px;
+}

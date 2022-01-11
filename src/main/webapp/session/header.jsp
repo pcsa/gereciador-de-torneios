@@ -6,10 +6,11 @@
     response.sendRedirect(request.getContextPath()+destPage);
   }
 %>
-<div class="header" style="display: flex; width: 500px; background-color: #e7f5f5">
-<p id="userName" style="flex: 1;"><b>Sua conta: </b>${sessionScope.user.getName()}</p>
-<form id="logOutButton" method="POST" action="logout" style="text-align: center; flex: 1;">
-	<button type="submit"> Logout </button>
-</form>
-	<a href="editarConta"><button> Editar conta </button></a>
+
+<div class="header">
+  <p class="vertical-center" id="userName" style="flex: 1;"><b>Sua conta: </b>${sessionScope.user.getName()}</p>
+  <form id="logOutButton" method="POST" action="logout" style="text-align: center; flex: 1;">
+    <button type="submit"> Logout </button>
+  </form>
+    <a href="editarConta"><button> Editar conta </button></a>
 </div>

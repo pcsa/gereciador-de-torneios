@@ -11,23 +11,25 @@
 		<title>Editar Torneio</title>
 	</head>
 
-<body>
-<%@ include file="header.jsp" %>
-<%
-Torneio torneio = 
-(Torneio) request.getAttribute("Torneio");
-%>
+	<body>
+		<div class="page-container center">
+			<%@ include file="header.jsp" %>
+			<%
+			Torneio torneio = 
+			(Torneio) request.getAttribute("Torneio");
+			%>
 
-<h1>Editar torneio</h1>
+			<h1>Editar torneio</h1>
 
-<form name="formEditTorneio" action="editaTorneio">
-	<input type="hidden" name="id" value="<%=torneio.getId() %>">
-	<input placeholder="Title" type="text" name="title" value="<%=torneio.getTitle() %>" required><br />
-	<input placeholder="Times" type="text" name="times" value="<%=torneio.getTimesSingle() %>" required><br />
-	
-	<input type="submit" value="Editar Torneio">
-	
-</form>
-<a href="home"><button><< Voltar</button></a>
-</body>
+			<form name="formEditTorneio" action="editaTorneio">
+				<input type="hidden" name="id" value="<%=torneio.getId() %>">
+				<input placeholder="Title" type="text" name="title" value="<%=torneio.getTitle() %>" required><br />
+				<input placeholder="Times" type="text" name="times" value="<%=torneio.getTimesSingle() %>" required><br />
+				
+				<input type="submit" class="blue-button button" value="Editar Torneio">
+				
+			</form>
+			<a href="home"><button><< Voltar</button></a>
+		</div>
+	</body>
 </html>

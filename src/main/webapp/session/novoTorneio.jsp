@@ -11,17 +11,20 @@
 		<title>Novo Torneio</title>
 	</head>
 
-<body>
-<%@ include file="header.jsp" %>
-<h3>Novo torneio</h3>
+	<body>
+		<div class="page-container center">
+			<%@ include file="header.jsp" %>
+			<h3>Novo torneio</h3>
 
-<form name="formNovoTorneio" action="novoTorneio">
-	<input placeholder="Título" type="text" name="title" required><br />
-	<input placeholder="Times" type="text" name="times" required><br />
-	
-	<input type="submit" value="Salvar">
-	
-</form>
-<a href="home"><button><< Voltar</button></a>
-</body>
+			<form name="formNovoTorneio" action="novoTorneio">
+				<input placeholder="Título" type="text" name="title" required><br />
+				<p>Insira um espaço entre cada time:</p>
+				<input placeholder="Times" type="text" name="times" required><br />
+				
+				<input type="submit" class="blue-button button" value="Salvar">
+				
+			</form>
+			<a href="home"><button><< Voltar</button></a>
+		</div>
+	</body>
 </html>

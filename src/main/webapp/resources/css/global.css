@@ -77,3 +77,14 @@ input[type="submit"]{
 	background-color: #e7f5f5;
 	padding: 0px 20px;
 }
+
+.fundo-claro {
+	max-width: 500px; 
+	background-color: #e7f5f5;
+	padding: 20px 20px;
+}
+
+.small-button {
+	font-size: 12px !important;
+	padding: 10px 20px !important;
+}

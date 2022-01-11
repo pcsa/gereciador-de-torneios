@@ -32,18 +32,20 @@
 				}
 			
 			%>
+			
+			<div class="fundo-claro">
+				<h3>Torneios criados</h3>
 
-			<h3>Torneios criados</h3>
-
-				<% if(torneios != null) { for(Torneio torneio : torneios) { %>
-					<p>
-						<span><%=torneio.getTitle()%></span>
-						<a href="cartela?id=<%=torneio.getId() %>"><button>Gerar Cartela</button></a>
-						<a href="selecionaTorneio?id=<%=torneio.getId() %>"><button>Editar</button></a>
-						<a href="deletar?id=<%=torneio.getId() %>"><button>Deletar</button></a>
-					</p>
-				<% }} else { 
-					%> <p>Nenhum torneio criado</p> <% }%>
+					<% if(torneios != null) { for(Torneio torneio : torneios) { %>
+						<p>
+							<span><%=torneio.getTitle()%></span>
+							<a href="cartela?id=<%=torneio.getId() %>"><button class="small-button blue-button">Gerar Cartela</button></a>
+							<a href="selecionaTorneio?id=<%=torneio.getId() %>"><button class="small-button blue-button">Editar</button></a>
+							<a href="deletar?id=<%=torneio.getId() %>"><button class="small-button">x Deletar</button></a>
+						</p>
+					<% }} else { 
+						%> <p>Nenhum torneio criado</p> <% }%>
+			</div>
 
 			<h3>Criar novo torneio</h3>
 			<a href="criarTorneio"><button>Novo torneio</button></a>

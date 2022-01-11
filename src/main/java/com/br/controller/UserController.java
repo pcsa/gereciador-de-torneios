@@ -71,7 +71,7 @@ public class UserController extends HttpServlet {
                 session.setAttribute("user", user);
                 destPage = "session/home.jsp";
             } else {
-                String message = "Email ou password invalidos";
+                String message = "E-mail ou senha inválidos.";
                 request.setAttribute("message", message);
             }
              

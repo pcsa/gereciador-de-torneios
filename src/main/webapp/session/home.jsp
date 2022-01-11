@@ -7,10 +7,14 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Inicio</title>
-</head>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="resources/css/global.css">
+		<link rel="icon" type="image/x-icon" href="resources/images/torneios.jpg">
+		<title>Inicio</title>
+	</head>
+
 <body>
 <%@ include file="header.jsp" %>
 <%

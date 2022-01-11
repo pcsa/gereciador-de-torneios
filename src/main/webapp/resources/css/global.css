@@ -9,10 +9,11 @@ body {
 	max-width: 1120px;
 	margin-right: auto;
 	margin-left: auto;
+	padding: 20px;
 }
 
 .logo {
-	max-width: 300px;
+	max-width: 200px;
 	text-align: center;
 }
 
@@ -23,9 +24,10 @@ body {
 	margin-left: auto;
 }
 
-button {
+button, .button {
 	border: none;
     color: #FFFFFF;
+	background-color: #000000;
     padding: 15px 32px;
     text-align: center;
     -webkit-transition-duration: 0.4s;
@@ -36,7 +38,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+button:hover, .button:hover {
 	transform: scale(1.05);
 }
 
@@ -44,6 +46,22 @@ button:hover {
     background-color: #008CBA;
 }
 
-.black-button {
-    background-color: #000000;
+input[type="text"], input[type="password"] {
+	max-width: 200px;
+	width: 100%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    transition: 0.5s;
+	margin-bottom: 4px;
+}
+
+input[type="submit"]{
+	max-width: 195px;
+	width: 100%;
+}
+
+.error {
+	color: #D8000C;
+	font-weight: 600;
 }

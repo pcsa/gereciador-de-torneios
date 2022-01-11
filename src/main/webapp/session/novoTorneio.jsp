@@ -3,10 +3,14 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Novo Torneio</title>
-</head>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="resources/css/global.css">
+		<link rel="icon" type="image/x-icon" href="resources/images/torneios.jpg">
+		<title>Novo Torneio</title>
+	</head>
+
 <body>
 <%@ include file="header.jsp" %>
 <h3>Novo torneio</h3>
@@ -18,6 +22,6 @@
 	<input type="submit" value="Salvar">
 	
 </form>
-<a href="home"><button> Voltar </button></a>
+<a href="home"><button><< Voltar</button></a>
 </body>
 </html>
